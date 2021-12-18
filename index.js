@@ -15,24 +15,24 @@ const addManager = () => {
     inquirer.prompt ([
         {type: 'input',
         name: 'managerName',
-        message: "what is your manager's name"
+        message: "what is your manager's name?"
 
         },
 
         {type: 'input',
         name: 'managerId',
-        message: "what is your manager's id"
+        message: "what is your manager's id?"
 
         },
 
         {type: 'input',
         name: 'managerEmail',
-        message: "what is your manager's email"
+        message: "what is your manager's email?"
 
         },
         {type: 'input',
         name: 'managerOfficeNumber',
-        message: "what is your manager's office number"
+        message: "what is your manager's office number?"
 
         }
     ])
@@ -50,8 +50,100 @@ const addManager = () => {
 }
 addManager();
 
-const addEmployee = () => {
-    // console.log('i am working');
-}
 
+
+
+const addEmployee = () => {
+    console.log(`
+    ++++++++++
+    add employee
+    ++++++++++
+    `);
+
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'role',
+            message: 'what type of employee do you want to add?',
+            choices: ['Intern', 'Engineer']
+
+
+
+        }
+    ]).then((response) => {
+       if(response.role === 'Intern'){
+
+        return inquirer.prompt([
+            {
+                type: 'input',
+                name: 'internName',
+                message: "what is your intern's name?"
+            },
+            {
+                type: 'input',
+                name: 'internId',
+                message: "what is your intern's id?"
+            },
+            {
+                type: 'input',
+                name: 'internEmail',
+                message: "what is your intern's email?"
+            },
+            {
+                type: 'input',
+                name: 'internSchool',
+                message: "what is your intern's school?"
+            }
+        ]).then((response) => {
+            const manager = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
+            allEmployees.push(Intern);
+            addEmployee();
+        })
+       }
+       if(response.role === 'Engineer'){
+        //    console.log('add engineer');
+            return inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'engineerName',
+                    message: "what is your engineer's name?"
+                },
+                {
+                    type: 'input',
+                    name: 'engineerId',
+                    message: "what is your engineer's id?"
+                },
+                {
+                    type: 'input',
+                    name: 'engineerEmail',
+                    message: "what is your engineer's email?"
+                },
+                {
+                    type: 'input',
+                    name: 'engineerGithub',
+                    message: "what is your Engineer's Github?"
+                },
+                {
+                    type: 'list',
+                    name: 'confirm',
+                    message: 'Would you like to add more employee?',
+                    choices: ['Yes', 'No']
+
+                }
+            ]).then((response) => {
+                if(response.confirm === 'Yes'){
+                    addEmployee();
+                }
+                else{
+                    const manager = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+                    allEmployees.push(Engineer);
+                }
+            })
+       }
+
+       
+
+    })
+
+}
 
