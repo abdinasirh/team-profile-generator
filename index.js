@@ -4,7 +4,8 @@ const Manager = require('./lib/Manager'
 );
 const Intern = require('./lib/Intern'
 );
-
+const template = require('./src/template');
+const path = require('path');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
@@ -55,17 +56,17 @@ addManager();
 
 const addEmployee = () => {
     console.log(`
-    ++++++++++
+    ----------
     add employee
-    ++++++++++
+    ----------
     `);
 
     inquirer.prompt([
         {
             type: 'list',
             name: 'role',
-            message: 'what type of employee do you want to add?',
-            choices: ['Intern', 'Engineer']
+            message: 'what type of employee would you like to add?',
+            choices: ['Intern', 'Engineer', 'Finish building my team']
 
 
 
@@ -95,8 +96,9 @@ const addEmployee = () => {
                 message: "what is your intern's school?"
             }
         ]).then((response) => {
-            const manager = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
-            allEmployees.push(Intern);
+            const employee = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
+            allEmployees.push(employee);
+            console.log(employee)
             addEmployee();
         })
        }
@@ -122,23 +124,23 @@ const addEmployee = () => {
                     type: 'input',
                     name: 'engineerGithub',
                     message: "what is your Engineer's Github?"
-                },
-                {
-                    type: 'list',
-                    name: 'confirm',
-                    message: 'Would you like to add more employee?',
-                    choices: ['Yes', 'No']
+                }
+                // {
+                //     type: 'list',
+                //     name: 'confirm',
+                //     message: 'Would you like to add more employees?',
+                //     choices: ['Yes', 'Done. Finish building my team!']
 
-                }
+                // }
             ]).then((response) => {
-                if(response.confirm === 'Yes'){
-                    addEmployee();
-                }
-                else{
-                    const manager = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
-                    allEmployees.push(Engineer);
-                }
+                const employee = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+                allEmployees.push(employee);
+                console.log(employee)
+                addEmployee();
             })
+       }else if (response.role === 'Finish building my team'){
+           console.log('create html page!')
+           
        }
 
        
@@ -146,4 +148,5 @@ const addEmployee = () => {
     })
 
 }
+
 
