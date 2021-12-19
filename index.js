@@ -4,7 +4,7 @@ const Manager = require('./lib/Manager'
 );
 const Intern = require('./lib/Intern'
 );
-const template = require('./src/template');
+const generateTemplate = require('./src/generateTemplate');
 const path = require('path');
 const inquirer = require('inquirer');
 const fs = require('fs');
@@ -140,6 +140,7 @@ const addEmployee = () => {
             })
        }else if (response.role === 'Finish building my team'){
            console.log('create html page!')
+           generateHtml();
            
        }
 
@@ -148,5 +149,25 @@ const addEmployee = () => {
     })
 
 }
+
+function writeToFile(fileName, data) {
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data)
+
+}
+
+
+function generateHtml() {
+
+    inquirer
+        .prompt(response)
+        .then((response) => {
+
+            writeToFile('index.html', generateTemplate({ ...response}));
+        })
+
+}
+
+
+
 
 
