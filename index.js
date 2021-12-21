@@ -4,10 +4,13 @@ const Manager = require('./lib/Manager'
 );
 const Intern = require('./lib/Intern'
 );
-const generateTemplate = require('./src/generateTemplate');
+const render = require('./src/generateTemplate');
 const path = require('path');
+
 const inquirer = require('inquirer');
 const fs = require('fs');
+const DIST_DIR = path.resolve(__dirname, 'dist');
+const distPath = path.join(DIST_DIR, 'index.html');
 
 const allEmployees = [];
 
@@ -49,7 +52,7 @@ const addManager = () => {
 
 
 }
-addManager();
+// addManager();
 
 
 
@@ -125,13 +128,7 @@ const addEmployee = () => {
                     name: 'engineerGithub',
                     message: "what is your Engineer's Github?"
                 }
-                // {
-                //     type: 'list',
-                //     name: 'confirm',
-                //     message: 'Would you like to add more employees?',
-                //     choices: ['Yes', 'Done. Finish building my team!']
-
-                // }
+                
             ]).then((response) => {
                 const employee = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
                 allEmployees.push(employee);
@@ -140,7 +137,7 @@ const addEmployee = () => {
             })
        }else if (response.role === 'Finish building my team'){
            console.log('create html page!')
-        //    generateHtml();
+           generateHtml();
            
        }
 
@@ -150,22 +147,21 @@ const addEmployee = () => {
 
 }
 
-function writeToFile(fileName, data) {
-    return fs.writeFileSync(path.join(process.cwd(), fileName), data)
-
-}
-
-
-// function generateHtml() {
-
-//     inquirer
-//         .prompt(response)
-//         .then((response) => {
-
-//             writeToFile('index.html', generateTemplate({ ...response}));
-//         })
+// function writeToFile(fileName, data) {
+//     return fs.writeFileSync(path.join(process.cwd(), fileName), data)
 
 // }
+
+
+function generateHtml() {
+    if(!fs.existsSync(DIST_DIR)) {
+        fs.mkdirSync(DIST_DIR);
+    }
+    fs.writeFileSync(distPath, render(allEmployees), 'utf-8')
+
+
+}
+addManager();
 
 
 

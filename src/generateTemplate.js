@@ -1,8 +1,5 @@
-const Engineer = require("../lib/Engineer")
-const Intern = require("../lib/Intern")
-
-
-const createManager = manager => {
+const generateTemplate = (employees) => {
+  const createManager = (manager) => {
     return `
 <div class = "card employee-card">
     <div class="card-header">
@@ -10,9 +7,11 @@ const createManager = manager => {
     </div>
     <div class ="card-body">
         <ul>
-            <li class="id">ID: ${manager.managerId}</li>
+            <li class="id">ID: ${manager.getId()}</li>
             <li class="email"><a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-            <li class="office-number">Office Number: ${manager.managerOfficeNumber}</li>
+            <li class="office-number">Office Number: ${
+              manager.getOfficeNumber()
+            }</li>
         </ul>
 
     </div>
@@ -21,10 +20,10 @@ const createManager = manager => {
     
     
     
-    `
-}
+    `;
+  };
 
-const createIntern = Intern => {
+  const createIntern = (intern) => {
     return `
 <div class = "card employee-card">
     <div class="card-header">
@@ -32,9 +31,9 @@ const createIntern = Intern => {
     </div>
     <div class ="card-body">
         <ul>
-            <li class="id">ID: ${intern.internID}</li>
+            <li class="id">ID: ${intern.getId()}</li>
             <li class="email"><a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-            <li class="office-number">Office Number: ${intern.internSchool}</li>
+            <li class="school">School: ${intern.getSchool()}</li>
         </ul>
 
     </div>
@@ -43,11 +42,10 @@ const createIntern = Intern => {
     
     
     
-    `
-}
+    `;
+  };
 
-
-const createEngineer = Engineer => {
+  const createEngineer = (engineer) => {
     return `
 <div class = "card employee-card">
     <div class="card-header">
@@ -55,9 +53,11 @@ const createEngineer = Engineer => {
     </div>
     <div class ="card-body">
         <ul>
-            <li class="id">ID: ${engineer.engineerID}</li>
+            <li class="id">ID: ${engineer.getId()}</li>
             <li class="email"><a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-            <li class="office-number">Office Number: ${engineer.engineerGithub}</li>
+            <li class="github">GitHub: ${
+              engineer.getGithub()
+            }</li>
         </ul>
 
     </div>
@@ -66,13 +66,29 @@ const createEngineer = Engineer => {
     
     
     
-    `
-}
+    `;
+  };
+
+  const html = [];
+
+  html.push(employees
+    .filter(employee => employee.getRole() === "Manager")
+  .map(manager => createManager(manager))
+  );
+
+  html.push(employees.filter(employee => employee.getRole() === "Intern")
+  .map(intern => createIntern(intern)).join(''));
+
+  html.push(employees.filter(employee => employee.getRole() === "Engineer")
+  .map(engineer => createEngineer(engineer)).join(''));
+  
+
+  return html.join("");
+
+};
 
 
-
-const createTeam = function(){
-
+module.exports = employees => {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -81,6 +97,7 @@ const createTeam = function(){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Team Profile</title>
+        
     </head>
     <body>
         <header>
@@ -89,7 +106,7 @@ const createTeam = function(){
     
         <main>
             <div class="container">
-                
+                ${generateTemplate(employees)}
             </div>
         </main>
         
@@ -97,5 +114,6 @@ const createTeam = function(){
     </html>
 
 
-    `
-}
+    `;
+  };
+
