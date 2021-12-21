@@ -140,7 +140,7 @@ const addEmployee = () => {
             })
        }else if (response.role === 'Finish building my team'){
            console.log('create html page!')
-           generateHtml();
+        //    generateHtml();
            
        }
 
@@ -156,16 +156,16 @@ function writeToFile(fileName, data) {
 }
 
 
-function generateHtml() {
+// function generateHtml() {
 
-    inquirer
-        .prompt(response)
-        .then((response) => {
+//     inquirer
+//         .prompt(response)
+//         .then((response) => {
 
-            writeToFile('index.html', generateTemplate({ ...response}));
-        })
+//             writeToFile('index.html', generateTemplate({ ...response}));
+//         })
 
-}
+// }
 
 
 
