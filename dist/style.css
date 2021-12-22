@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+:root{
+    --primary: teal;
+    --secondary: gray;
+
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--secondary);
+}
+
+
+/* .navbar{
+    background-color: var(--primary);
+    text-align: center;
+    
+}
+
+.navbar-brand{
+    font-size: 40px;
+    text-align: center;
+
+} */
+
+header{
+    text-align: center;
+}
+
+h2{
+    background-color: teal;
+    font-size: 40px;
+}
+
+
