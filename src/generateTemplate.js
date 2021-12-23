@@ -5,6 +5,7 @@ const generateTemplate = (employees) => {
         <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h1>${manager.getName()}</h1>
+                <h5>Manager</h5><i class="fas fa-tasks"></i>
             </div>
             <div class ="card-body">
                 <ul class = "list-group list-group-flush">
@@ -32,6 +33,7 @@ const generateTemplate = (employees) => {
         <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h1>${intern.getName()}</h1>
+                <h5>Intern</h5><i class="fas fa-graduation-cap"></i>
             </div>
             <div class ="card-body">
                 <ul class="list-group list-group-flush">
@@ -58,6 +60,7 @@ const generateTemplate = (employees) => {
         <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h1>${engineer.getName()}</h1>
+                <h5>Engineer</h5><i class="fas fa-laptop-code"></i>
             </div>
             <div class ="card-body">
                 <ul lass="list-group list-group-flush">
@@ -110,6 +113,7 @@ module.exports = employees => {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
         <link rel="stylesheet" href="style.css">
