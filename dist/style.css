@@ -17,25 +17,29 @@ body {
 }
 
 
-/* .navbar{
-    background-color: var(--primary);
-    text-align: center;
-    
-}
 
 .navbar-brand{
-    font-size: 40px;
-    text-align: center;
+    font-size: 60px;
 
+
+} 
+
+.card-header{
+    background-color: var(--primary);
+    color: white;
+}
+
+/* .card-body{
+    background-color: var(--secondary);
+    color: white;
 } */
 
-header{
-    text-align: center;
+
+.container{
+    justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-h2{
-    background-color: teal;
-    font-size: 40px;
-}
 
 

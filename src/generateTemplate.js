@@ -1,23 +1,26 @@
 const generateTemplate = (employees) => {
   const createManager = (manager) => {
     return `
-<div class = "card employee-card">
-    <div class="card-header">
-        <h1>${manager.getName()}</h1>
-    </div>
-    <div class ="card-body">
-        <ul>
-            <li class="id">ID: ${manager.getId()}</li>
-            <li class="email"><a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-            <li class="office-number">Office Number: ${
-              manager.getOfficeNumber()
-            }</li>
-        </ul>
+    <div class="col-4 mt-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h1>${manager.getName()}</h1>
+            </div>
+            <div class ="card-body">
+                <ul class = "list-group list-group-flush">
+                    <li class="list-group-item">ID: ${manager.getId()}</li>
+                    <li class="list-group-item">Email:<a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+                    <li class="list-group-item">Office Number: ${
+                    manager.getOfficeNumber()
+                    }</li>
+                </ul>
 
+            </div>
+
+        </div>
     </div>
 
-</div>
-    
+        
     
     
     `;
@@ -25,20 +28,24 @@ const generateTemplate = (employees) => {
 
   const createIntern = (intern) => {
     return `
-<div class = "card employee-card">
-    <div class="card-header">
-        <h1>${intern.getName()}</h1>
-    </div>
-    <div class ="card-body">
-        <ul>
-            <li class="id">ID: ${intern.getId()}</li>
-            <li class="email"><a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-            <li class="school">School: ${intern.getSchool()}</li>
-        </ul>
+    <div class="col-4 mt-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h1>${intern.getName()}</h1>
+            </div>
+            <div class ="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${intern.getId()}</li>
+                    <li class="list-group-item">Email:<a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+                    <li class="list-group-item">School: ${intern.getSchool()}</li>
+                </ul>
 
+            </div>
+
+        </div>
     </div>
 
-</div>
+
     
     
     
@@ -47,22 +54,24 @@ const generateTemplate = (employees) => {
 
   const createEngineer = (engineer) => {
     return `
-<div class = "card employee-card">
-    <div class="card-header">
-        <h1>${engineer.getName()}</h1>
-    </div>
-    <div class ="card-body">
-        <ul>
-            <li class="id">ID: ${engineer.getId()}</li>
-            <li class="email"><a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-            <li class="github">GitHub: ${
-              engineer.getGithub()
-            }</li>
-        </ul>
+    <div class="col-4 mt-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h1>${engineer.getName()}</h1>
+            </div>
+            <div class ="card-body">
+                <ul lass="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${engineer.getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+                    <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></li>
+                </ul>
 
+            </div>
+
+        </div>
     </div>
 
-</div>
+
     
     
     
@@ -107,17 +116,16 @@ module.exports = employees => {
 
 
     </head>
-    <body>
-        <header>
-            <h2>Team Profile</h2>
-        </header>       
-        // <nav class="navbar navbar-light bg-light">
-        //     <span class="navbar-brand mb-0 h1">Team Profile</span>
-        // </nav>
+    <body>      
+        <nav class="navbar-dark bg-dark mb-5">
+            <span class="navbar-brand mb-0 h1 w-100 text-center">Team Profile</span>
+        </nav>
             
         <main>
             <div class="container">
-                ${generateTemplate(employees)}
+                <div class="row align-items-center">
+                    ${generateTemplate(employees)}
+                </div> 
             </div>
         </main>
         
